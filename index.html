@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Редирект</title>
-  <script>
-    window.onload = function() {
-      var params = new URLSearchParams(window.location.search);
-      var username = params.get('username');
-      if (!username) {
-        alert("Параметр username не найден!");
-        return;
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Yönlendiriliyor...</title>
+    <script>
+      function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[
+
+\[\]
+
+]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
       }
-      var scriptUrl = "https://script.google.com/macros/s/AKfycbzIVCFOnSVKwVYsh7SSAeXCe5u7nLRl-ZkKnydNqu79pPKHbfSvBtAGu5FNzI21exiO/exec?username=" + encodeURIComponent(username);
-      fetch(scriptUrl)
-        .then(function(response) { return response.text(); })
-        .then(function(data) {
-          var referralUrl = "https://betoholictrack.net/hdujLSZO?sub_id=%7Bclick_id%7D&username=" + encodeURIComponent(username);
-          window.location.href = referralUrl;
-        })
-        .catch(function(error) {
-          var referralUrl = "https://betoholictrack.net/hdujLSZO?sub_id=%7Bclick_id%7D&username=" + encodeURIComponent(username);
-          window.location.href = referralUrl;
-        });
-    };
-  </script>
-</head>
-<body>
-  <p>Пожалуйста, подождите, идет перенаправление...</p>
-</body>
+      
+      window.onload = function() {
+        var clickID = getParameterByName("click_id") || "";
+        var referralLink = "https://ame1a56mb.com/1xBF?sub_id=" + encodeURIComponent(clickID);
+        
+        var appScriptUrl = "https://script.google.com/macros/s/AKfycbx73VomUXp0JF9mPVSIU-q_oECnB4k8FpOFez_KTjbSIRTKCKEExfRhLOricHW1QKlz/exec";
+        var logUrl = appScriptUrl +
+                     "?id=" + encodeURIComponent(clickID) +
+                     "&status=Click" +
+                     "&balance=0" +
+                     "&username=" +
+                     "&country=";
+        
+        fetch(logUrl)
+          .then(function(response) {
+            setTimeout(function() {
+              window.location.href = referralLink;
+            }, 1000);
+          })
+          .catch(function(error) {
+            console.error(error);
+            setTimeout(function() {
+              window.location.href = referralLink;
+            }, 1000);
+          });
+      };
+    </script>
+  </head>
+  <body>
+    <p>Lütfen bekleyiniz, yönlendiriliyorsunuz...</p>
+  </body>
 </html>
