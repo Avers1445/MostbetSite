@@ -11,9 +11,18 @@
         alert("Параметр username не найден!");
         return;
       }
-      var redirectUrl = "https://script.google.com/macros/s/AKfycbzIVCFOnSVKwVYsh7SSAeXCe5u7nLRl-ZkKnydNqu79pPKHbfSvBtAGu5FNzI21exiO/exec?username=" + encodeURIComponent(username);
-      window.location.href = redirectUrl;
-    }
+      var scriptUrl = "https://script.google.com/macros/s/AKfycbzIVCFOnSVKwVYsh7SSAeXCe5u7nLRl-ZkKnydNqu79pPKHbfSvBtAGu5FNzI21exiO/exec?username=" + encodeURIComponent(username);
+      fetch(scriptUrl)
+        .then(function(response) { return response.text(); })
+        .then(function(data) {
+          var referralUrl = "https://betoholictrack.net/hdujLSZO?sub_id=%7Bclick_id%7D&username=" + encodeURIComponent(username);
+          window.location.href = referralUrl;
+        })
+        .catch(function(error) {
+          var referralUrl = "https://betoholictrack.net/hdujLSZO?sub_id=%7Bclick_id%7D&username=" + encodeURIComponent(username);
+          window.location.href = referralUrl;
+        });
+    };
   </script>
 </head>
 <body>
